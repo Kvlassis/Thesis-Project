@@ -45,7 +45,7 @@ if ($orderId) {
     <?php astra_primary_content_top(); ?>
 
     
-        <h3>Order no <?php echo $orderId; ?> placed by <?php echo $firstName . ' ' . $lastName; ?> on <?php echo $timestamp; ?> (GMT+2) : received</h3>
+        <h3>Order no <?php echo $orderId; ?> placed by <?php echo $firstName . ' ' . $lastName; ?> on <?php echo $timestamp; ?> (GMT+2): received</h3>
         <p>You can view your order details <a href="<?php echo esc_url(home_url('/OrderDetails_' . $orderId . '.pdf')); ?>" target="_blank">here</a>.</p>
 
 
