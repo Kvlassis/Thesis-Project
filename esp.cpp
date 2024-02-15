@@ -6,8 +6,8 @@
 #include <limits.h>
 
 //setting up WiFi and URLs
-const char* ssid = "Sisko";
-const char* password = "EBAkoloXLEBA10";
+const char* ssid = "********";
+const char* password = "************";
 const char* url = "http://e-shopaholic.atwebpages.com/wp-json/my-plugin/v1/form-submissions";
 const char* postEndpoint = "http://e-shopaholic.atwebpages.com/wp-content/themes/astra/handle_request.php"; 
 
@@ -35,21 +35,22 @@ const int POSITION_IdeusHandsfree = 150;
 const int POSITION_BlackHandsfree = 160;
 
 //delays
-const int DELAY_GreyDrinkCoasters = 200;
-const int DELAY_BluePlasticContainers = 400;
-const int DELAY_OrangePlasticContainers = 600;
-const int DELAY_LampCover = 800;
-const int DELAY_GreyCandles = 1000;
-const int DELAY_MushroomLamp = 1200;
-const int DELAY_PinkTableLamp = 1400;
-const int DELAY_SharpDigitalClock = 1600;
-const int DELAY_BlackDigitalClock = 1800;
-const int DELAY_TexetWebCam = 2000;
-const int DELAY_LogitechWebCam = 2200;
-const int DELAY_SonyUsbStick = 2400;
-const int DELAY_CruzerUsbStick = 2600;
-const int DELAY_IdeusHandsfree = 2800;
-const int DELAY_BlackHandsfree = 3000;
+const int DELAY_SportsDrinkCoasters = 5000;
+const int DELAY_GreyDrinkCoasters = 10000;
+const int DELAY_BluePlasticContainers = 15000;
+const int DELAY_OrangePlasticContainers = 20000;
+const int DELAY_LampCover = 25000;
+const int DELAY_GreyCandles = 30000;
+const int DELAY_MushroomLamp = 35000;
+const int DELAY_PinkTableLamp = 40000;
+const int DELAY_SharpDigitalClock = 45000;
+const int DELAY_BlackDigitalClock = 50000;
+const int DELAY_TexetWebCam = 55000;
+const int DELAY_LogitechWebCam = 60000;
+const int DELAY_SonyUsbStick = 65000;
+const int DELAY_CruzerUsbStick = 70000;
+const int DELAY_IdeusHandsfree = 75000;
+const int DELAY_BlackHandsfree = 80000;
 
 
 
@@ -138,8 +139,6 @@ void loop() {
       
       if (currentId != previousId && currentId !=0) {
         
-        sendStatusUpdate("Order id " + String(currentId) + " is being processed");
-
         //storing max id's data
         String firstName = maxObject["first"];
         firstName[0] = toupper(firstName[0]);
@@ -168,6 +167,7 @@ void loop() {
         String quantitiesArray[maxProducts];
         int numQuantities = splitString(quantities, ',', quantitiesArray, maxProducts);
         
+        sendStatusUpdate("Order id " + String(currentId) + " is being processed");
 
       for (int i = 0; i < numProducts; i++) {
         String productName = productNames[i];
@@ -176,7 +176,7 @@ void loop() {
          for (int j = 0; j < quantity; j++) {
         //moving servo based on product
         if (productName == "Sports-drink-coasters") {
-            moveServo(POSITION_SportsDrinkCoasters, productName, 0);
+            moveServo(POSITION_SportsDrinkCoasters, productName, DELAY_SportsDrinkCoasters);
           
         } else if (productName == "Grey-drink-coasters") {
           moveServo(POSITION_GreyDrinkCoasters, productName, DELAY_GreyDrinkCoasters);
@@ -246,10 +246,10 @@ void loop() {
 
 void moveServo(int position, String productName, int extraDelay) {
     myservo.write(position);
-    delay(1000 + extraDelay);
+    delay(extraDelay);
     myservo.write(0);
+    delay(extraDelay);
     sendStatusUpdate("Item '" + productName + "' retrieved");
-    delay(1000);
 }
 
 void sendStatusUpdate(String message) {
