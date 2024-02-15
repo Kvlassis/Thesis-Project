@@ -1,4 +1,4 @@
-This projects intergrades both software as well as hardware componets to create an e-shop using Wordpress that communicates with a NodeMCU ESP8266 module to simulate the automated order picking process.
+This projects integrades both software as well as hardware componets to create an e-shop using Wordpress that communicates with a NodeMCU ESP8266 module to simulate the automated order picking process.
 For the creation of the website custom files inside the Wordpress theme were created, languages such as JavaScript, Html and Css, as well as the WordPress plugin ELEMENTOR, were used to create the front-end of the platform and PHP and SQL to create the back-end.
 Finally Cpp and Arduino IDE were used to program the ESP module.
 The website works as a typical e-shop, any user can place an order through the system and upon submission the order info get stored in the DB. Because the ESP can't communicate directly withe DB, a custom plugin was created, fetching the data from the DB and displaying them 
